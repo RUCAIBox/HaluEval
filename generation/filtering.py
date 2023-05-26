@@ -2,6 +2,7 @@ import random
 import openai
 import time
 import json
+import argparse
 
 openai.api_key = 'sk-'
 
@@ -43,7 +44,7 @@ def get_qa_res(knowledge, question, answer1, answer2, instruction):
             time.sleep(20)
     
     
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
@@ -83,11 +84,11 @@ def get_dialogue_res(knowledge, dialog, response1, response2, instruction):
             print('openai.error.APIConnectionError\nRetrying...')
             time.sleep(20)
 
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
-def get_res(document, summary1, summary2, instruction):
+def get_summarization_res(document, summary1, summary2, instruction):
     message = [
         {"role": "system", "content": "You are a summary judge. You have to select a summary from the provided two summaris. The answer you provided must be \"The best summary is Summary 1.\" or \"The best summary is Summary 2.\""},
         {"role": "user", "content": instruction +
@@ -122,7 +123,7 @@ def get_res(document, summary1, summary2, instruction):
             print('openai.error.APIConnectionError\nRetrying...')
             time.sleep(20)
 
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
@@ -199,12 +200,12 @@ def filtering_dialogue_dataset(file1, file2, instruction, output_path):
                     res = "The best response is Response 1."
 
             else:
-                res = get_res(knowledge, dialog, response1, response2, instruction)
+                res = get_dialogue_res(knowledge, dialog, response1, response2, instruction)
                 k = 0
                 while (("The best response is Response 1" not in res and "The best response is Response 2" not in res) or (
                                "The best response is Response 1" in res and "The best response is Response 2" in res)):
                     assert (k < 5)
-                    res = get_res(knowledge, dialog, response1, response2, instruction)
+                    res = get_dialogue_res(knowledge, dialog, response1, response2, instruction)
                     k = k + 1
 
             if ("1" in res and "2" in res) or ("1" not in res and "2" not in res):
@@ -250,12 +251,12 @@ def filtering_summarization_dataset(file1, file2, instruction, output_path):
                 else:
                     res = "The best summary is Summary 1."
             else:
-                res = get_res(document, summary1, summary2, instruction)
+                res = get_summarization_res(document, summary1, summary2, instruction)
                 k = 0
                 while ("The best summary is Summary 1" not in res and "The best summary is Summary 2" not in res) or (
                         "The best summary is Summary 1" in res and "The best summary is Summary 2" in res):
                     assert (k < 5)
-                    res = get_res(document, summary1, summary2, instruction)
+                    res = get_summarization_res(document, summary1, summary2, instruction)
                     k = k + 1
 
             if ("1" in res and "2" in res) or ("1" not in res and "2" not in res):
@@ -292,14 +293,14 @@ if __name__ == '__main__':
     parser.add_argument("--task", default="qa", help="qa, dialogue, or summarization")
     args = parser.parse_args()
 
-    instruction_file = "{}/{}_instruction.txt".format(args.task, args.task)
+    instruction_file = "{}/{}_filtering_instruction.txt".format(args.task, args.task)
     f = open(instruction_file, 'r', encoding="utf-8")
     instruction = f.read()
 
     output_path = "../data/{}_data.json".format(args.task, args.task)
 
-    sample_1 = "{}/{}_one-turn_data.json"
-    sample_2 = "{}/{}_multi-turn_data.json"
+    sample_1 = "{}/{}_one-turn_data.json".format(args.task, args.task)
+    sample_2 = "{}/{}_multi-turn_data.json".format(args.task, args.task)
 
     if args.task == "qa":
         filtering_qa_dataset(sample_1, sample_2, instruction, output_path)

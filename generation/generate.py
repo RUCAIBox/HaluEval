@@ -8,14 +8,24 @@ openai.api_key = 'sk-'
 
 
 def get_qa_res(knowledge, question, answer, instruction):
-
-    message = [
-        {"role": "user", "content": instruction +
-                                    "\n\n#Knowledge#: " + knowledge +
-                                    "\n#Question#: " + question +
-                                    "\n#Right Answer#: " + answer +
-                                    "\n#Hallucinated Answer#: "}   
-    ]
+    if isinstance(instruction, str):
+        message = [
+            {"role": "user", "content": instruction +
+                                        "\n\n#Knowledge#: " + knowledge +
+                                        "\n#Question#: " + question +
+                                        "\n#Right Answer#: " + answer +
+                                        "\n#Hallucinated Answer#: "}
+        ]
+    elif isinstance(instruction, list):
+        mes = [{"role": "user",
+                "content": "You are now a mature hallucination generator. Please generate hallucinated answer for the following question. You can use any method you have learned that is suitable for the given question." +
+                           "\n\n#Knowledge#: " + knowledge +
+                           "\n#Question#: " + question +
+                           "\n#Right Answer#: " + answer +
+                           "\n#Hallucinated Answer#: "}]
+        message = instruction + mes
+    else:
+        raise TypeError("The instruction must be str or list!")
              
     while True:
         try:
@@ -49,13 +59,24 @@ def get_qa_res(knowledge, question, answer, instruction):
 
 
 def get_dialogue_res(knowledge, dialog, response, instruction):
-    message = [
-        {"role": "user", "content": instruction +
-                                    "\n\n#Knowledge#: " + knowledge +
-                                    "\n#Dialogue History#: " + dialog +
-                                    "\n#True Response#: " + response +
-                                    "\n#Hallucinated Response#: "}
-    ]
+    if isinstance(instruction, str):
+        message = [
+            {"role": "user", "content": instruction +
+                                        "\n\n#Knowledge#: " + knowledge +
+                                        "\n#Dialogue History#: " + dialog +
+                                        "\n#True Response#: " + response +
+                                        "\n#Hallucinated Response#: "}
+        ]
+    elif isinstance(instruction, list):
+        mes = [{"role": "user",
+                "content": "You are now a mature hallucination generator. Please generate hallucinated response for the following dialogue. You can use any method you have learned that is suitable for the given dialogue history." +
+                           "\n\n#Knowledge#: " + knowledge +
+                           "\n#Dialogue History#: " + dialog +
+                           "\n#True Response#: " + response +
+                           "\n#Hallucinated Response#: "}]
+        message = instruction + mes
+    else:
+        raise TypeError("The instruction must be str or list!")
 
     while True:
         try:
@@ -88,12 +109,23 @@ def get_dialogue_res(knowledge, dialog, response, instruction):
 
 
 def get_summarization_res(text, summary, instruction):
-    message = [
-        {"role": "user", "content": instruction +
-                                    "\n\n#Document#: " + text +
-                                    "\n#Right Summary#: " + summary +
-                                    "\n#Hallucinated Summary#: "}
-    ]
+    if isinstance(instruction, str):
+        message = [
+            {"role": "user", "content": instruction +
+                                        "\n\n#Document#: " + text +
+                                        "\n#Right Summary#: " + summary +
+                                        "\n#Hallucinated Summary#: "}
+        ]
+    elif isinstance(instruction, list):
+        mes = [{"role": "user",
+                "content": "You are now a mature hallucination generator. Please generate hallucinated summary for the following document. You can use any method you have learned that is suitable for the given document. #Hallucinated Summary# must not be longer than #Right Summary#." +
+                           "\n\n#Document#: " + text +
+                           "\n#Right Summary#: " + summary +
+                           "\n#Hallucinated Summary#: "}]
+        message = instruction + mes
+    else:
+        raise TypeError("The instruction must be str or list!")
+
     while True:
         try:
             res = openai.ChatCompletion.create(
@@ -219,9 +251,17 @@ if __name__ == '__main__':
 
     seed_data = args.seed_data
 
-    instruction_file = "{}/{}_{}_instruction.txt".format(args.task, args.task, args.strategy)
-    f = open(instruction_file, 'r', encoding="utf-8")
-    instruction = f.read()
+    if args.strategy == "one-turn":
+        instruction_file = "{}/{}_{}_instruction.txt".format(args.task, args.task, args.strategy)
+        f = open(instruction_file, 'r', encoding="utf-8")
+        instruction = f.read()
+    elif args.strategy == "multi-turn":
+        instruction_file = "{}/{}_{}_instruction.json".format(args.task, args.task, args.strategy)
+        with open(instruction_file, 'r', encoding="utf-8") as f:
+            lines = f.readlines()
+        instruction = [json.loads(line) for line in lines]
+    else:
+        raise ValueError("The strategy must be one-turn or multi-turn!")
 
     output_path = "{}/{}_{}_data.json".format(args.task, args.task, args.strategy)
 

@@ -1,0 +1,45 @@
+I want you act as an answer judge. Given a question, two answers, and related knowledge, your objective is to select the best and correct answer without hallucination and non-factual information. Here are some examples:
+
+#Knowledge#: The American Hairless Terrier is a rare breed of dog that was derived as a variant of Rat Terrier. As of January 1, 2004, the United Kennel Club deemed the AHT a separate terrier breed, granting it full UKC recognition. The American Hairless Terrier is a rare breed of dog that was derived as a variant of Rat Terrier.
+#Question#: What is a rare breed of dog that was derived as a variant of Rat Terrier, Shiloh Shepherd dog or American Hairless Terrier?
+#Answer 1#: American Hairless Terrier
+#Answer 2#: One rare breed of dog that was derived as a variant of Rat Terrier, Shiloh Shepherd dog or American Hairless Terrier is the Teddy Roosevelt Terrier.
+#Your Choice#: The best answer is Answer 1.
+
+#Knowledge#: The total length of the New Orleans Outfall Canals and the Augusta Canal is approximately 7 miles (11.3 kilometers) long.
+#Question#: Are the New Orleans Outfall Canals the same length as the Augusta Canal?
+#Answer 1#: No, the New Orleans Outfall Canals and the Augusta Canal are not the same length. The Orleans Canal is approximately 3.6 miles (5.8 kilometers) long while the Augusta Canal is approximately 7 miles (11.3 kilometers) long.
+#Answer 2#: Yes, the New Orleans Outfall Canals and the Augusta Canal are the same length, which is approximately 7 miles (11.3 kilometers) long.
+#Your Choice#: The best answer is Answer 2.
+
+#Knowledge#: The nine mile byway starts south of Morehead, Kentucky and can be accessed by U.S. Highway 60.Morehead is a home rule-class city located along US 60 (the historic Midland Trail) and Interstate 64 in Rowan County, Kentucky, in the United States.
+#Question#: What U.S Highway gives access to Zilpo Road, and is also known as Midland Trail?
+#Answer 1#: U.S. Highway 60 
+#Answer 2#: U.S Highway 70
+#Your Choice#: The best answer is Answer 1.
+
+#Knowledge#: Superheaven played a style of alternative rock that draws heavily from 90s grunge and emo. Oceansize was a British progressive rock band that was active from 1998 to 2011.
+#Question#: What genre do Superheaven and Oceansize belong to?
+#Answer 1#: Superheaven and Oceansize are not of the same genre. They are different types of rock.
+#Answer 2#: Superheaven and Oceansize belong to the rock genre.
+#Your Choice#: The best answer is Answer 2.
+
+#Knowledge#: Kōbō Abe was a Japanese writer, and playwright. He is best known for his 1962 novel The Woman in the Dunes that was made into an award-winning film by Hiroshi Teshigahara in 1964. Agatha Christie was an English writer known for her 66 detective novels and 14 short story collections, particularly those revolving around fictional detectives Hercule Poirot and Miss Marple.
+#Question#: What profession do Kōbō Abe and Agatha Christie share?
+#Answer 1#: Author.
+#Answer 2#: Playwright.
+#Your Choice#: The best answer is Answer 2.
+
+#Knowledge#: Muse is an English rock band from Teignmouth, Devon, formed in 1994. The band consists of Matt Bellamy (lead vocals, guitar, keyboards), Chris Wolstenholme (bass guitar, backing vocals), and Dominic Howard (drums). The Raconteurs is an American rock band from Detroit, Michigan, formed in 2005. The band consists of Jack White (vocals, guitar), Brendan Benson (vocals, guitar), Jack Lawrence (bass guitar), and Patrick Keeler (drums).
+#Question#: Which band has more members, Muse or The Raconteurs?
+#Answer 1#: The Raconteurs has more members than Muse. Muse is a British rock band with three members. The Raconteurs has four members.
+#Answer 2#: Muse has more members than The Raconteurs.
+#Your Choice#: The best answer is Answer 1.
+
+#Knowledge#: Meadowbank Gold Mine was producing gold at a rate of approximately 220,000 ounces per year. On the other hand, Temagami-Lorrain Mine is a historic iron mine located in Ontario, Canada that has been inactive for many years. It is not currently producing any minerals.
+#Question#: Which is currently more valuable, Temagami-Lorrain Mine or Meadowbank Gold Mine?
+#Answer 1#: Meadowbank Gold Mine, since Meadowbank Gold Mine is still producing gold and the TemagamiLorrain Mine has been inactive for years.
+#Answer 2#: I cannot provide the current valuation of Temagami-Lorrain Mine or Meadowbank Gold Mine.
+#Your Choice#: The best answer is Answer 1.
+
+You should try your best to select the best and correct answer. If the two answers are the same, you can randomly choose one. If both answers are incorrect, choose the better one. You MUST select an answer from the provided two answers.
