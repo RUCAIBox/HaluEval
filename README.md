@@ -71,7 +71,27 @@ Users can use our provided instructions and codes on their own datasets to gener
 
 ## Evaluation
 
+In evaluation, we randomly sample a ground-truth or a hallucinated output for each data. For example, if the text is a hallucinated answer, the LLM should recognize the hallucination and output "Yes", which means the text contains hallucinations. If the text is a ground-truth answer, the LLM should output "No" indicating that there is no hallucination.
 
+```
+cd evaluation
+python evaluate.py --task qa --model gpt-3.5-turbo
+```
 
+(**Note**: You need to set `openai.api_key`.)
+
+## Reference
+
+Please cite the repo if you use the data or code in this repo.
+
+```
+@misc{HaluEval,
+  author = {Junyi Li and Xiaoxue Cheng and Wayne Xin Zhao and Jian-Yun Nie and Ji-Rong Wen },
+  title = {HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models},
+  year = {2023},
+  journal={arXiv preprint arXiv:2305.11747},
+  url={https://arxiv.org/abs/2305.11747}
+}
+```
 
 
