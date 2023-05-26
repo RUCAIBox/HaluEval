@@ -5,7 +5,6 @@ This is the repo for our paper: [HaluEval: A Large-Scale Hallucination Evaluatio
 - The [35K data](#data-release) used for evaluating the LLM.
 - The code for [generating the data](#data-generation-process).
 - The code for [evaluating the model](#evaluation).
-- The code for [fine-tuning the model](#fine-tuning).
 
 ## Overview
 
@@ -29,11 +28,11 @@ by ground-truth examples and leverage ChatGPT for sample selection.
 The directory [`data`](./data) contains 35K generated and human-annotated hallucinated samples we used in our experiments.
 There are four JSON files as follows:
 
-- [`hotpotqa_data.json`](./data/hotpotqa_data.json): 10K hallucinated samples for QA based on [HotpotQA](https://hotpotqa.github.io/) as seed data. 
+- [`qa_data.json`](./data/hotpotqa_data.json): 10K hallucinated samples for QA based on [HotpotQA](https://hotpotqa.github.io/) as seed data. 
 For each sample dictionary, the fields `knowledge`, `question`, and `right_answer` refer to the knowledge from Wikipedia, question text, and ground-truth answer collected from HotpotQA. The field `hallucinated_answer` is the generated hallucinated answer correspondingly.
-- [`opendialkg_data.json`](./data/opendialkg_data.json): 10K hallucinated samples for dialogue based on [OpenDialKG](https://github.com/facebookresearch/opendialkg) as seed data. 
+- [`dialogue_data.json`](./data/opendialkg_data.json): 10K hallucinated samples for dialogue based on [OpenDialKG](https://github.com/facebookresearch/opendialkg) as seed data. 
 For each sample dictionary, the fields `knowledge`, `dialogue_history`, and `right_response` refer to the knowledge from Wikipedia, dialogue history, and ground-truth response collected from OpenDialKG. The field `hallucinated_response` is the generated hallucinated response correspondingly.
-- [`cnndm_data.json`](./data/cnndm_data.json): 10K hallucinated samples for summarization based on [CNN/Daily Mail](https://github.com/abisee/cnn-dailymail) as seed data. 
+- [`summarization_data.json`](./data/cnndm_data.json): 10K hallucinated samples for summarization based on [CNN/Daily Mail](https://github.com/abisee/cnn-dailymail) as seed data. 
 For each sample dictionary, the fields `document` and `right_summary` refer to the document and ground-truth summary collected from CNN/Daily Mail. The field `hallucinated_summary` is the generated hallucinated summary correspondingly.
 - [`general_data.json`](./data/general_data.json): 5K human-annotated samples for ChatGPT responses to general user queries from [Alpaca](https://github.com/tatsu-lab/stanford_alpaca).
 For each sample dictionary, the fields `user_query`, `chatgpt_response`, and `hallucination_label` refer to the posed user query, ChatGPT response, and hallucination label (Yes/No) annotated by humans.
@@ -43,7 +42,15 @@ Based on these data, you can evaluate the ability of LLMs to recognize hallucina
 ## Data Generation Process
 
 We executed the data generation pipeline via ChatGPT using two different sampling methods, i.e., one-turn and multi-turn.
+Here we use the QA task as an example for data generation.
 
+- First, we randomly sample 10K data from the training set of HotpotQA dataset.
+
+```
+wget http://curtis.ml.cmu.edu/datasets/hotpot/hotpot_train_v1.1.json
+```
+
+- Second, we use the one-turn instruction [`qa_oneturn_instruction.txt`](./generation/qa) to generate hallucinated answers.
 
 
 
