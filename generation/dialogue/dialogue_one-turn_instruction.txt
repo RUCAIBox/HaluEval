@@ -1,0 +1,37 @@
+I want you act as an assistant in a conversation with human. Given a dialogue history, the true response, and related knowledge, your objective is to write a hallucinated response that sounds plausible but is factually incorrect. You SHOULD write the hallucinated response using the following method (each with some examples):
+
+You are trying to write a response to human but you replace the true entity with a highly similar entity.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: Steven Spielberg was the director. He also directed insomnia and inception.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: The Dark Knight Rises was the director. He also directed insomnia and inception.
+
+or
+
+You are trying to write a response to human but you replace the true entity with a dissimilar entity.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: Warner Bros. was the director. He also directed insomnia and inception.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: Batman Begins was the director. He also directed insomnia and inception.
+
+or
+
+You are trying to write a response to human but you replace the true entity with a dissimilar entity in a different entity type.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: Joe Biden was the director. He also directed insomnia and inception.
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommend movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#True Response#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Hallucinated Response#: United States of America was the director. He also directed insomnia and inception.
+
+You should try your best to make the response become hallucinated.

@@ -41,16 +41,39 @@ Based on these data, you can evaluate the ability of LLMs to recognize hallucina
 
 ## Data Generation Process
 
-We executed the data generation pipeline via ChatGPT using two different sampling methods, i.e., one-turn and multi-turn.
-Here we use the QA task as an example for data generation.
+We executed the data generation pipeline via ChatGPT according to the following steps:
 
-- First, we randomly sample 10K data from the training set of HotpotQA dataset.
+(Note: You need to set the `openai.api_key` )
+
+- First, we download the training sets of HotpotQA, OpenDialKG, and CNN/Daily Mail.
 
 ```
+cd generation
 wget http://curtis.ml.cmu.edu/datasets/hotpot/hotpot_train_v1.1.json
+wget https://raw.githubusercontent.com/facebookresearch/opendialkg/main/data/opendialkg.csv
+wget https://huggingface.co/datasets/ccdv/cnn_dailymail/blob/main/cnn_stories.tgz
 ```
 
-- Second, we use the one-turn instruction [`qa_oneturn_instruction.txt`](./generation/qa) to generate hallucinated answers.
+- Second, we sample 10K samples and generate their hallucinated counterparts by setting the task (e.g., `qa`, `dialogue`, or `summarization`) 
+and sampling strategy (e.g., `one-turn` or `multi-turn`). Here, we generate hallucinated samples for the QA task using the one-turn sampling strategy based on the downloaded HotpotQA dataset.
+
+(Note: You need to set `openai.api_key`.)
+```
+python generate.py --seed_data hotpot_train_v1.1.json --task qa --strategy one-turn
+
+```
+
+- Finally, we select the most plausible and difficult hallucinated sample from these two sampling methods. Here, we select the best hallucinated answer for the QA task.
+
+```
+python filtering.py --task qa
+```
+
+This process for the dialogue and summarization tasks. Users can user our provided instructions and codes on their own datasets to generate hallucinated samples.
+
+## Evaluation
+
+
 
 
 
