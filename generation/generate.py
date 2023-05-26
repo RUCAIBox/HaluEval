@@ -44,7 +44,7 @@ def get_qa_res(knowledge, question, answer, instruction):
             time.sleep(20)
     
     
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
@@ -83,7 +83,7 @@ def get_dialogue_res(knowledge, dialog, response, instruction):
             print('openai.error.APIConnectionError\nRetrying...')
             time.sleep(20)
 
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
@@ -120,7 +120,7 @@ def get_summarization_res(text, summary, instruction):
             print('openai.error.APIConnectionError\nRetrying...')
             time.sleep(20)
 
-    print(res['choices'][0]['message']['content'])
+    # print(res['choices'][0]['message']['content'])
     return res['choices'][0]['message']['content']
 
 
@@ -185,9 +185,10 @@ def generate_dialogue_dataset(seed_data, instruction, output_path):
             print("sample {} completed!".format(i))
 
 
-def get_summarization_dataset(seed_data, instruction, output_path):
+def generate_summarization_dataset(seed_data, instruction, output_path):
     with open(seed_data, 'r', encoding="utf-8") as f:
-        text = json.load(f)
+        data = f.readlines()
+        text = [json.loads(d) for d in data]
 
         for i in range(10000):
             document = text[i]["document"]
