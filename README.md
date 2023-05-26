@@ -67,7 +67,7 @@ The final selected samples will be stored in the `data` directory. Here, we sele
 python filtering.py --task qa
 ```
 
-This process for the dialogue and summarization tasks. Users can user our provided instructions and codes on their own datasets to generate hallucinated samples.
+Users can use our provided instructions and codes on their own datasets to generate hallucinated samples.
 
 ## Evaluation
 
