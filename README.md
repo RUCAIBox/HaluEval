@@ -61,7 +61,7 @@ python generate.py --seed_data hotpot_train_v1.1.json --task qa --strategy one-t
 ```
 
 - Finally, we select the most plausible and difficult hallucinated sample from these two sampling methods. 
-The final selected samples will be stored in the `data` directory. Here, we select the best hallucinated answer for the QA task.
+The final selected samples will be stored in the `data` directory. Here, we select the best hallucinated answer for the QA task. (**Note**: You need to set `openai.api_key`.)
 
 ```
 python filtering.py --task qa
