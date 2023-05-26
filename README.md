@@ -72,6 +72,7 @@ Users can use our provided instructions and codes on their own datasets to gener
 ## Evaluation
 
 In evaluation, we randomly sample a ground-truth or a hallucinated output for each data. For example, if the text is a hallucinated answer, the LLM should recognize the hallucination and output "Yes", which means the text contains hallucinations. If the text is a ground-truth answer, the LLM should output "No" indicating that there is no hallucination.
+Here, we evaluate ChatGPT on the QA task.
 
 ```
 cd evaluation
