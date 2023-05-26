@@ -1,0 +1,39 @@
+I want you act as a response judge. Given a dialogue history, two responses, and related knowledge, your objective is to select the best and correct response without hallucination and non-factual information. Here are some examples:
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Response 2#: Steven Spielberg was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 1.
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: The Dark Knight Rises was the director. He also directed insomnia and inception.
+#Response 2#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 2.
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: Warner Bros. was the director. He also directed insomnia and inception.
+#Response 2#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 2.
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Response 2#: Batman Begins was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 1.
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Response 2#: Joe Biden was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 1.
+
+#Knowledge#: The Dark Knight is a 2008 superhero film directed by Christopher Nolan from a screenplay he co-wrote with his brother Jonathan. Christopher Nolan is a film director.
+#Dialogue History#: [Human]: Could you recommand movies similar to The Dark Knight? [Assistant]: The sequel to Batman Begins is The Dark Knight. [Human]: Okay. Who is the director of The Dark Knight and any other movies from him not related to Batman?
+#Response 1#: United States of America was the director. He also directed insomnia and inception.
+#Response 2#: Christopher Nolan was the director. He also directed insomnia and inception.
+#Your Choice#: The best response is Response 2.
+
+You should try your best to select the best and correct response. If the two responses are the same, you can randomly choose one. If both responses are incorrect, choose the better one. You MUST select a response from the provided two responses.
