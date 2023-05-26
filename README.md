@@ -55,15 +55,14 @@ wget https://huggingface.co/datasets/ccdv/cnn_dailymail/blob/main/cnn_stories.tg
 ```
 
 - Second, we sample 10K samples and generate their hallucinated counterparts by setting the task (e.g., `qa`, `dialogue`, or `summarization`) 
-and sampling strategy (e.g., `one-turn` or `multi-turn`). Here, we generate hallucinated samples for the QA task using the one-turn sampling strategy based on the downloaded HotpotQA dataset.
-
-(Note: You need to set `openai.api_key`.)
+and sampling strategy (e.g., `one-turn` or `multi-turn`). Here, we generate hallucinated samples for the QA task using the one-turn sampling strategy based on the downloaded HotpotQA dataset. (Note: You need to set `openai.api_key`.)
 ```
 python generate.py --seed_data hotpot_train_v1.1.json --task qa --strategy one-turn
 
 ```
 
-- Finally, we select the most plausible and difficult hallucinated sample from these two sampling methods. Here, we select the best hallucinated answer for the QA task.
+- Finally, we select the most plausible and difficult hallucinated sample from these two sampling methods. 
+The final selected samples will be stored in the `data` directory. Here, we select the best hallucinated answer for the QA task.
 
 ```
 python filtering.py --task qa

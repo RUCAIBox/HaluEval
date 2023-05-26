@@ -296,7 +296,7 @@ if __name__ == '__main__':
     f = open(instruction_file, 'r', encoding="utf-8")
     instruction = f.read()
 
-    output_path = "{}/{}_filtering_data.json".format(args.task, args.task)
+    output_path = "../data/{}_data.json".format(args.task, args.task)
 
     sample_1 = "{}/{}_one-turn_data.json"
     sample_2 = "{}/{}_multi-turn_data.json"
