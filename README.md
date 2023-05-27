@@ -43,8 +43,6 @@ Based on these data, you can evaluate the ability of LLMs to recognize hallucina
 
 We executed the data generation pipeline via ChatGPT according to the following steps:
 
-(Note: You need to set the `openai.api_key` )
-
 - First, we download the training sets of HotpotQA, OpenDialKG, and CNN/Daily Mail.
 
 ```
