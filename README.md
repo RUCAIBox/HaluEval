@@ -98,18 +98,5 @@ cd analysis
 python analyze.py --task qa --result ../evaluation/qa/qa_gpt-3.5-turbo_result.json --category all
 ```
 
-## Reference
-
-Please cite the repo if you use the data or code in this repo.
-
-```
-@misc{HaluEval,
-  author = {Junyi Li and Xiaoxue Cheng and Wayne Xin Zhao and Jian-Yun Nie and Ji-Rong Wen },
-  title = {HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models},
-  year = {2023},
-  journal={arXiv preprint arXiv:2305.11747},
-  url={https://arxiv.org/abs/2305.11747}
-}
-```
 
 
