@@ -7,7 +7,8 @@ from gensim.models import Phrases
 from gensim.models import LdaModel
 from pprint import pprint
 from gensim.corpora import Dictionary
-import pyLDAvis.gensim
+from pyLDAvis import gensim_models
+import pyLDAvis
 import argparse
 
 
@@ -137,7 +138,7 @@ def lda_model(docs, num_topics):
     print('Average topic coherence: %.4f.' % avg_topic_coherence)
     pprint(top_topics)
 
-    vis = pyLDAvis.gensim.prepare(model, corpus, dictionary)
+    vis = gensim_models.prepare(model, corpus, dictionary)
     pyLDAvis.show(vis, local=False)
 
 
@@ -150,13 +151,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.task == 'qa':
-        text, failed_text = load_qa(args.data_path)
+        text, failed_text = load_qa(args.result)
     elif args.task == 'dialogue':
-        text, failed_text = load_dialog(args.data_path)
+        text, failed_text = load_dialog(args.result)
     elif args.task == 'summarization':
-        text, failed_text = load_summary(args.data_path)
+        text, failed_text = load_summary(args.result)
     elif args.task == 'general':
-        text, failed_text = load_general(args.data_path)
+        text, failed_text = load_general(args.result)
     else:
         raise ValueError("The task must be qa, dialogue, summarization, or general!")
 
