@@ -98,7 +98,7 @@ cd analysis
 python analyze.py --task qa --result ../evaluation/qa/qa_gpt-3.5-turbo_result.json --category all
 ```
 
-## Analysis
+## License
 
 HaluEval uses [MIT License](./LICENSE).
 
