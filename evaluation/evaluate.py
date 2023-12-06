@@ -188,7 +188,7 @@ def evaluation_qa_dataset(model, file, instruction, output_path):
             ans = ans.replace(".", "")
 
             if ("Yes" in ans and "No" in ans) or ("Yes" not in ans and "No" not in ans):
-                gen = {"knowlwdge": knowledge, "question": question, "answer": answer, "ground_truth": ground_truth, "judgement": "failed!"}
+                gen = {"knowledge": knowledge, "question": question, "answer": answer, "ground_truth": ground_truth, "judgement": "failed!"}
                 dump_jsonl(gen, output_path, append=True)
                 incorrect += 1
                 print('sample {} fails......'.format(i))
